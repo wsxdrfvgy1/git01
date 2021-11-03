@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="apartment_management@127.0.0.1" uuid="5f9b7574-0d27-4c08-a18e-67fd95feaf8f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/apartment_management?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hm_crm@127.0.0.1" uuid="8eb27330-04ca-46f9-bcd0-45b4985560e9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/hm_crm?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8</jdbc-url>
+    </data-source>
+  </component>
+</project>

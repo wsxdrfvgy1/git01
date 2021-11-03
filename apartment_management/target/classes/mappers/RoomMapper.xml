@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjxxt.am.mapper.RoomMapper" >
+  <resultMap id="BaseResultMap" type="com.yjxxt.am.bean.Room" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="room_size" property="roomSize" jdbcType="VARCHAR" />
+    <result column="live_number" property="liveNumber" jdbcType="INTEGER" />
+    <result column="is_clean" property="isClean" jdbcType="INTEGER" />
+    <result column="is_fix" property="isFix" jdbcType="INTEGER" />
+    <result column="empty_number" property="emptyNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, room_size, live_number, is_clean, is_fix, empty_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yjxxt.am.bean.Room" >
+    insert into t_room (id, room_size, live_number, 
+      is_clean, is_fix, empty_number
+      )
+    values (#{id,jdbcType=INTEGER}, #{roomSize,jdbcType=VARCHAR}, #{liveNumber,jdbcType=INTEGER}, 
+      #{isClean,jdbcType=INTEGER}, #{isFix,jdbcType=INTEGER}, #{emptyNumber,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjxxt.am.bean.Room" >
+    insert into t_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomSize != null" >
+        room_size,
+      </if>
+      <if test="liveNumber != null" >
+        live_number,
+      </if>
+      <if test="isClean != null" >
+        is_clean,
+      </if>
+      <if test="isFix != null" >
+        is_fix,
+      </if>
+      <if test="emptyNumber != null" >
+        empty_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomSize != null" >
+        #{roomSize,jdbcType=VARCHAR},
+      </if>
+      <if test="liveNumber != null" >
+        #{liveNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isClean != null" >
+        #{isClean,jdbcType=INTEGER},
+      </if>
+      <if test="isFix != null" >
+        #{isFix,jdbcType=INTEGER},
+      </if>
+      <if test="emptyNumber != null" >
+        #{emptyNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjxxt.am.bean.Room" >
+    update t_room
+    <set >
+      <if test="roomSize != null" >
+        room_size = #{roomSize,jdbcType=VARCHAR},
+      </if>
+      <if test="liveNumber != null" >
+        live_number = #{liveNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isClean != null" >
+        is_clean = #{isClean,jdbcType=INTEGER},
+      </if>
+      <if test="isFix != null" >
+        is_fix = #{isFix,jdbcType=INTEGER},
+      </if>
+      <if test="emptyNumber != null" >
+        empty_number = #{emptyNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjxxt.am.bean.Room" >
+    update t_room
+    set room_size = #{roomSize,jdbcType=VARCHAR},
+      live_number = #{liveNumber,jdbcType=INTEGER},
+      is_clean = #{isClean,jdbcType=INTEGER},
+      is_fix = #{isFix,jdbcType=INTEGER},
+      empty_number = #{emptyNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--数据报表-->
+  <select id="findRoomType" resultType="java.util.Map">
+    select room_size as name , count(room_size) as value from t_room group by room_size
+  </select>
+</mapper>
